@@ -336,7 +336,7 @@ f:			if ( line >= buf + (bufsize - 1) ) /* overflow check */
 			    /* buf isn't a function header, but */
 			    /* more might be. */
 			    fputs(buf, out);
-			    strcpy(buf, more);
+			    strlcpy(buf, more, sizeof(buf));
 			    line = buf;
 			    goto test;
 			  }

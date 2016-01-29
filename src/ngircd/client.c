@@ -1292,7 +1292,7 @@ Client_Reject(CLIENT *Client, const char *Reason, bool InformClient)
 	if (InformClient)
 		snprintf(info, sizeof(info), "Access denied: %s", Reason);
 	else
-		strcpy(info, "Access denied: Bad password?");
+		strlcpy(info, "Access denied: Bad password?", sizeof(info));
 
 	Log(LOG_ERR,
 	    "User \"%s\" rejected (connection %d): %s!",

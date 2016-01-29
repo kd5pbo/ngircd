@@ -698,7 +698,7 @@ IRC_CHANINFO( CLIENT *Client, REQUEST *Req )
 				Channel_ModeDel(chan, 'k');
 			}
 
-			strcpy(modes_add, "");
+			strlcpy(modes_add, "", sizeof(modes_add));
 			if (Channel_HasMode(chan, 'l'))  {
 				snprintf(l, sizeof(l), " %lu",
 					 Channel_MaxUsers(chan));

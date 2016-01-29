@@ -214,7 +214,7 @@ IRC_SERVER( CLIENT *Client, REQUEST *Req )
 			snprintf(str, sizeof(str), "connected to %s, ",
 				 Client_ID(from));
 		else
-			strcpy(str, "");
+			strlcpy(str, "", sizeof(str));
 		Log(LOG_NOTICE|LOG_snotice,
 		    "Server \"%s\" registered (via %s, %s%d hop%s).",
 		    Client_ID(c), Client_ID(Client), str, Client_Hops(c),
@@ -250,7 +250,7 @@ IRC_NJOIN( CLIENT *Client, REQUEST *Req )
 	assert(Req != NULL);
 
 	strlcpy(nick_in, Req->argv[1], sizeof(nick_in));
-	strcpy(nick_out, "");
+	strlcpy(nick_out, "", sizeof(nick_out));
 
 	channame = Req->argv[0];
 

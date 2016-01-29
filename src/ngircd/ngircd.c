@@ -222,12 +222,12 @@ main(int argc, const char *argv[])
 	NGIRCd_DebugLevel[0] = '\0';
 #ifdef DEBUG
 	if (NGIRCd_Debug)
-		strcpy(NGIRCd_DebugLevel, "1");
+		strlcpy(NGIRCd_DebugLevel, "1", sizeof(NGIRCd_DebugLevel));
 #endif
 #ifdef SNIFFER
 	if (NGIRCd_Sniffer) {
 		NGIRCd_Debug = true;
-		strcpy(NGIRCd_DebugLevel, "2");
+		strlcpy(NGIRCd_DebugLevel, "2", sizeof(NGIRCd_DebugLevel));
 	}
 #endif
 

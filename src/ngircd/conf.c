@@ -738,13 +738,13 @@ Set_Defaults(bool InitServers)
 	char random[RANDOM_SALT_LEN + 1];
 
 	/* Global */
-	strcpy(Conf_ServerName, "");
-	strcpy(Conf_ServerAdmin1, "");
-	strcpy(Conf_ServerAdmin2, "");
-	strcpy(Conf_ServerAdminMail, "");
+	strlcpy(Conf_ServerName, "", sizeof(Conf_ServerName));
+	strlcpy(Conf_ServerAdmin1, "", sizeof(Conf_ServerAdmin1));
+	strlcpy(Conf_ServerAdmin2, "", sizeof(Conf_ServerAdmin2));
+	strlcpy(Conf_ServerAdminMail, "", sizeof(Conf_ServerAdminMail));
 	snprintf(Conf_ServerInfo, sizeof Conf_ServerInfo, "%s %s",
 		 PACKAGE_NAME, PACKAGE_VERSION);
-	strcpy(Conf_Network, "");
+	strlcpy(Conf_Network, "", sizeof(Conf_Network));
 	free(Conf_ListenAddress);
 	Conf_ListenAddress = NULL;
 	array_free(&Conf_ListenPorts);
@@ -754,7 +754,7 @@ Set_Defaults(bool InitServers)
 	strlcat(Conf_MotdFile, MOTD_FILE, sizeof(Conf_MotdFile));
 	strlcpy(Conf_HelpFile, DOCDIR, sizeof(Conf_HelpFile));
 	strlcat(Conf_HelpFile, HELP_FILE, sizeof(Conf_HelpFile));
-	strcpy(Conf_ServerPwd, "");
+	strlcpy(Conf_ServerPwd, "", sizeof(Conf_ServerPwd));
 	strlcpy(Conf_PidFile, PID_FILE, sizeof(Conf_PidFile));
 	Conf_UID = Conf_GID = 0;
 
@@ -777,8 +777,8 @@ Set_Defaults(bool InitServers)
 	Conf_AuthPing = false;
 #endif
 	strlcpy(Conf_Chroot, CHROOT_DIR, sizeof(Conf_Chroot));
-	strcpy(Conf_CloakHost, "");
-	strcpy(Conf_CloakHostModeX, "");
+	strlcpy(Conf_CloakHost, "", sizeof(Conf_CloakHost));
+	strlcpy(Conf_CloakHostModeX, "", sizeof(Conf_CloakHostModeX));
 	strlcpy(Conf_CloakHostSalt, ngt_RandomStr(random, RANDOM_SALT_LEN),
 		sizeof(Conf_CloakHostSalt));
 	Conf_CloakUserToNick = false;
@@ -788,14 +788,14 @@ Set_Defaults(bool InitServers)
 #else
 	Conf_ConnectIPv6 = false;
 #endif
-	strcpy(Conf_DefaultUserModes, "");
+	strlcpy(Conf_DefaultUserModes, "", sizeof(Conf_DefaultUserModes));
 	Conf_DNS = true;
 #ifdef IDENTAUTH
 	Conf_Ident = true;
 #else
 	Conf_Ident = false;
 #endif
-	strcpy(Conf_IncludeDir, "");
+	strlcpy(Conf_IncludeDir, "", sizeof(Conf_IncludeDir));
 	Conf_MorePrivacy = false;
 	Conf_NoticeBeforeRegistration = false;
 	Conf_OperCanMode = false;

@@ -852,8 +852,13 @@ va_dcl
 		 *                                                   -alex-
 		 */
 
-		strcpy (buffer + sizeof(buffer) - strlen(CUT_TXTSUFFIX) - 2 - 1,
-			CUT_TXTSUFFIX);
+                /* Space for "[CUT]\r\n\0" */
+                len = strlen(CUT_TXTSUFFIX) + 2 + 1;
+                /* Make sure there's enough space in the buffer */
+                if (sizeof(buffer) < len) {
+                        return false;
+                }
+                strlcpy(buffer + sizeof(buffer) - len, CUT_TXTSUFFIX, len);
 	}
 
 #ifdef ICONV

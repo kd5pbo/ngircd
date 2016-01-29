@@ -151,10 +151,10 @@ Client_Mode( CLIENT *Client, REQUEST *Req, CLIENT *Origin, CLIENT *Target )
 	/* Initial state: set or unset modes? */
 	if (*mode_ptr == '+') {
 		set = true;
-		strcpy(the_modes, "+");
+		strlcpy(the_modes, "+", sizeof(the_modes));
 	} else if (*mode_ptr == '-') {
 		set = false;
-		strcpy(the_modes, "-");
+		strlcpy(the_modes, "-", sizeof(the_modes));
 	} else
 		return IRC_WriteErrClient(Origin, ERR_UMODEUNKNOWNFLAG_MSG,
 					  Client_ID(Origin));
@@ -496,7 +496,7 @@ Channel_Mode(CLIENT *Client, REQUEST *Req, CLIENT *Origin, CHANNEL *Channel)
 	}
 
 	/* Prepare reply string */
-	strcpy(the_modes, set ? "+" : "-");
+	strlcpy(the_modes, set ? "+" : "-", sizeof(the_modes));
 	the_args[0] = '\0';
 
 	x[1] = '\0';

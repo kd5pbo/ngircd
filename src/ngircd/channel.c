@@ -995,7 +995,7 @@ Add_Client( CHANNEL *Chan, CLIENT *Client )
 	}
 	cl2chan->channel = Chan;
 	cl2chan->client = Client;
-	strcpy( cl2chan->modes, "" );
+	strlcpy(cl2chan->modes, "", sizeof(cl2chan->modes));
 
 	/* concatenate */
 	cl2chan->next = My_Cl2Chan;

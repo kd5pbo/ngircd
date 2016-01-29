@@ -172,17 +172,17 @@ Signal_Handler(int Signal)
 			Log(LOG_INFO|LOG_snotice,
 			    "Got SIGUSR1, debug mode activated.");
 #ifdef SNIFFER
-			strcpy(NGIRCd_DebugLevel, "2");
+			strlcpy(NGIRCd_DebugLevel, "2", sizeof(NGIRCd_DebugLevel));
 			NGIRCd_Debug = true;
 			NGIRCd_Sniffer = true;
 #else
-			strcpy(NGIRCd_DebugLevel, "1");
+			strlcpy(NGIRCd_DebugLevel, "1", sizeof(NGIRCd_DebugLevel));
 			NGIRCd_Debug = true;
 #endif /* SNIFFER */
 		} else {
 			Log(LOG_INFO|LOG_snotice,
 			    "Got SIGUSR1, debug mode deactivated.");
-			strcpy(NGIRCd_DebugLevel, "");
+			strlcpy(NGIRCd_DebugLevel, "", sizeof(NGIRCd_DebugLevel));
 			NGIRCd_Debug = false;
 #ifdef SNIFFER
 			NGIRCd_Sniffer = false;

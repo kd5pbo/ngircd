@@ -483,8 +483,10 @@ Option_String(UNUSED CONN_ID Idx)
 	assert(Idx != NONE);
 
 	options = Conn_Options(Idx);
-	strcpy(option_txt, "F");	/* No idea what this means, but the
-					 * original ircd sends it ... */
+	strlcpy(option_txt, "F", sizeof(option_txt));	/* No idea what this
+                                                           means, but the
+                                                           original ircd sends
+                                                           it ... */
 #ifdef SSL_SUPPORT
 	if(options & CONN_SSL)		/* SSL encrypted link */
 		strlcat(option_txt, "s", sizeof(option_txt));
