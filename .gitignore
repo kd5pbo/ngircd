@@ -65,3 +65,5 @@ src/testsuite/tests
 src/testsuite/tests-skipped.lst
 src/testsuite/who-test
 src/testsuite/whois-test
+# Vim swap files
+.*.swp
